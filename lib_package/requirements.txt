@@ -1,0 +1,4 @@
+The process used in this project started by underlining the requirements, that were to implement two or three modules, in our case were the arg.parse, reading a csv dataset and testing.
+The objective was to make an outsider able to find a book to read and if this person had preferences he could try to find the optimal reading with our functions and modules. 
+Everyone had to open a branch to upload it’s code that should be checked with pycodestyle and well documented. 
+The files needed to be grouped in a package file with: README.md file with the instructions to run the code on main.py that will run the functions and modules, the license, the modules,the init.py and setup.py, all this inside the main folder(Library_GitGud) , which has the main.py, the library.py and the package file(lib_package). 

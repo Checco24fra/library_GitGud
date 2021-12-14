@@ -26,3 +26,33 @@ def check_author(author_name):
 
     if not found:
         print("Sorry, {} is not present.".format(author_name))
+
+def check_by_initial_author(first_letter):
+	"""
+	check_by_initial_author() returns all authors that starting with the letter given in input
+	"""
+    flag = 0				# a flag used to verify if there is no author with that letter
+    if len(first_letter) == 1:	# if the user insert more than one letter, the script will return an print error
+        for name in list_of_books.values():
+            if name[0] == first_letter or title[0] == first_letter.upper():	# if a author start with the letter given in input
+                print(name)													# it will be printed
+                flag = 1													# deactivate the flag
+        if flag == 0:
+            print("no authors were found starting with the letter \"{}\"".format(first_letter))
+    else:
+        print("Error! enter only one letter")
+        
+def check_by_initial_title(first_letter):
+	"""
+	check_by_initial_title() returns all books that starting with the letter given in input
+	"""
+    flag = 0 							# a flag used to verify if there is no books with that letter
+    if len(first_letter) == 1: 			# if the user insert more than one letter, the script will return an print error
+        for title in list_of_books.keys(): # iterator
+            if title[0] == first_letter or title[0] == first_letter.upper(): 	# if a book start with the letter given in input
+                print(title)													# it will be printed
+                flag = 1														# deactivate the flag
+        if flag == 0:															
+            print("no books were found starting with the letter \"{}\"".format(first_letter))
+    else:
+        print("Error! enter only one letter")

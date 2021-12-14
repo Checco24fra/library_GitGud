@@ -17,8 +17,8 @@ def read_csv_pages(n):
             print('Please, enter a valid length... ')
 
         i = 0
-        
-        for row in csv_reader:                # Iteration to get first 100 lines
+
+        for row in csv_reader:                # Iteration for first 100 lines
             if i <= 100 and int(row[4]) < n:  # Books with less than n pages
 
                 one = f'{row[0]} was written by '

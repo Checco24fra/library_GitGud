@@ -8,7 +8,8 @@ list_of_books = {'Romeo and Juliet': 'William Shakespeare',
 'The Picture of Dorian Gray' : 'Oscar Wilde',
 'A Christmas Carol' : 'Charles Dickens',
                  }
-
+import csv
+import re
 
 def check_book(title):
     if title in list_of_books:
@@ -56,3 +57,21 @@ def check_by_initial_title(first_letter):
             print("no books were found starting with the letter \"{}\"".format(first_letter))
     else:
         print("Error! enter only one letter")
+
+def read_csv_pages(author_name):
+    """
+    Function that receive in input a surname and return
+    all the books that was written by that author
+    """
+    with open('books_new.csv') as csv_file:   # Opening file
+        flag = 0
+        csv_reader = csv.reader(csv_file, delimiter=',') #reading file
+        header = next(csv_reader)         # reading the header
+
+        print(f"{author_name.capitalize()} has written:")
+        for row in csv_reader:                # Iteration for all lines
+            if re.search(f"\W*({author_name.capitalize()})\W*", row[1]):  # Using Regular expression to find the name in the string
+                print(f"- {row[0]} in {row[2]}")    # Print
+                flag = 1
+        if flag == 0:
+            print("nothing found...")

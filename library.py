@@ -11,10 +11,16 @@ list_of_books = {'Romeo and Juliet': 'William Shakespeare',
 
 
 def check_book(title):
-    if title in list_of_books:
-        print("The book {} is written by {}".format(title, list_of_books[title]))
+    if isinstance(title, str):
+        if title in list_of_books:
+            print("The book {} is written by {}".format(title, list_of_books[title]))
+            return True
+        else:
+            print("Sorry, we do not have {}".format(title))
+            return False
     else:
-        print("Sorry, we do not have {}".format(title))
+        print("Invalid type, the title should be a string")
+        return None
 
 def check_author(author_name):
 
@@ -23,9 +29,11 @@ def check_author(author_name):
         if author == author_name:
             print("{} wrote {}".format(author_name, title))
             found = True
+            return True
 
     if not found:
         print("Sorry, {} is not present.".format(author_name))
+        return False
 
 def check_by_initial_author(first_letter):
 	"""
@@ -41,7 +49,7 @@ def check_by_initial_author(first_letter):
             print("no authors were found starting with the letter \"{}\"".format(first_letter))
     else:
         print("Error! enter only one letter")
-        
+
 def check_by_initial_title(first_letter):
 	"""
 	check_by_initial_title() returns all books that starting with the letter given in input
@@ -52,7 +60,7 @@ def check_by_initial_title(first_letter):
             if title[0] == first_letter or title[0] == first_letter.upper(): 	# if a book start with the letter given in input
                 print(title)													# it will be printed
                 flag = 1														# deactivate the flag
-        if flag == 0:															
+        if flag == 0:
             print("no books were found starting with the letter \"{}\"".format(first_letter))
     else:
         print("Error! enter only one letter")

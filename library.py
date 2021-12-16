@@ -34,6 +34,7 @@ def check_by_initial_author(first_letter):
     """
     cbia_list= []
     flag = 0 # a flag used to verify if there is no author with that letter
+    list_of_books = csv_to_title_author()
     if len(first_letter) == 1:# if the user insert more than one letter, the script will return an print error
         for name in list_of_books.values():
             if name[0] == first_letter or name[0] == first_letter.upper():# if a author start with the letter given in input
@@ -53,6 +54,7 @@ def check_by_initial_title(first_letter):
     """
     cbit_list= []
     flag = 0 							# a flag used to verify if there is no books with that letter
+    list_of_books = csv_to_title_author()
     if len(first_letter) == 1: 			# if the user insert more than one letter, the script will return an print error
         for title in list_of_books.keys(): # iterator
             if title[0] == first_letter or title[0] == first_letter.upper(): 	# if a book start with the letter given in input
@@ -87,3 +89,14 @@ def read_csv_pages(author_name):
             print("nothing found...")
         else:
             return rcp_list
+            
+def csv_to_title_author():
+    ctta_dict ={}
+    with open('books_new.csv') as csv_file:   # Opening file
+        csv_reader = csv.reader(csv_file, delimiter=',') #reading file
+        header = next(csv_reader)         # reading the header
+        for row in csv_reader:                # Iteration for all lines
+            if row[1] != '':#There is some books without an author so I removed it
+                ctta_dict[row[0]] = row[1]
+    return ctta_dict
+    

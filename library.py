@@ -11,6 +11,9 @@ list_of_books = {'Romeo and Juliet': 'William Shakespeare',
 
 
 def check_book(title):
+    """
+    Print the author of a title
+    """
     if isinstance(title, str):
         if title in list_of_books:
             print("The book {} is written by {}".format(title, list_of_books[title]))
@@ -23,17 +26,25 @@ def check_book(title):
         return None
 
 def check_author(author_name):
+    """
+    Print all the titles written by an author
+    """
 
-    found = False
-    for title, author in list_of_books.items():
-        if author == author_name:
-            print("{} wrote {}".format(author_name, title))
-            found = True
-            return True
+    if isinstance(title, str):
+        found = False
+        for title, author in list_of_books.items():
+            if author == author_name:
+                print("{} wrote {}".format(author_name, title))
+                found = True
+                return True
 
-    if not found:
-        print("Sorry, {} is not present.".format(author_name))
-        return False
+        if not found:
+            print("Sorry, {} is not present.".format(author_name))
+            return False
+    else:
+        print("Invalid type, the author's name should be a string")
+        return None
+
 
 def check_by_initial_author(first_letter):
 	"""

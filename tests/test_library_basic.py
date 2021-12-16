@@ -18,7 +18,7 @@ class TestStringInput(unittest.TestCase):
         self.assertEqual(library.check_book(None), None)
         self.assertEqual(library.check_book(1984), None)
         self.assertEqual(library.check_book([]), None)
-        self.assertEqual(library.check_book(), None)
+        self.assertEqual(library.check_book({}), None)
 
     # corner case: empty string
     def test_empty_string_book(self):
@@ -31,14 +31,14 @@ class TestStringInput(unittest.TestCase):
         self.assertFalse(library.check_author("Santa Claus"))
     # invalid inputs
     def test_wrong_values_author(self):
-        self.assertEqual(library.check_author(None))
-        self.assertEqual(library.check_author(1984))
-        self.assertEqual(library.check_author([]))
-        self.assertEqual(library.check_author())
+        self.assertEqual(library.check_author(None), None)
+        self.assertEqual(library.check_author(1984), None)
+        self.assertEqual(library.check_author([]), None)
+        self.assertEqual(library.check_author({}), None)
 
     # corner case: empty string
     def test_empty_string_author(self):
-        self.assertEqual(library.check_author(""))
+        self.assertFalse(library.check_author(""))
 
 
 

@@ -95,17 +95,19 @@ def check_by_initial_author(first_letter):
     list_of_books = csv_to_title_author()
 
     if isinstance(first_letter, str):
-        if len(first_letter) == 1:  # Only one letter, will return an print error
+        # Only one letter, will return an print error
+        if len(first_letter) == 1:
             for name in list_of_books.values():
-                if name[0] == first_letter or name[0] == first_letter.upper():  # If author start with the letter given in input
+                # If author start with the letter given in input
+                if name[0] == first_letter or name[0] == first_letter.upper():
                     cbia_list.append(name)
                     flag = 1.  # Deactivate the flag
             if flag == 0:
-                value = first_letter
-                print(f"no authors were found starting with the letter {value}")
+                v = first_letter
+                print(f"no authors were found starting with the letter {v}")
                 return []
             else:
-                print(*cbia_list, sep ='\n')
+                print(*cbia_list, sep='\n')
                 return cbia_list
         else:
             print("Error! enter only one letter")
@@ -115,24 +117,28 @@ def check_by_initial_author(first_letter):
         return None
 
 
-def check_by_initial_title(first_letter):
+def check_by_initial_title(letter):
 
     """
-    check_by_initial_title() returns all books that starting with the letter given in input
+    check_by_initial_title() returns all books
+    that starting with the letter given in input
     """
 
     cbit_list = []
     flag = 0  # a flag used to verify if there is no books with that letter
     list_of_books = csv_to_title_author()
 
-    if isinstance(first_letter, str):
-        if len(first_letter) == 1:  # if the user insert more than one letter, the script will return an print error
-            for title in list_of_books.keys():  # Iterator
-                if title[0] == first_letter or title[0] == first_letter.upper():  # If a book start with the letter given in input
-                    cbit_list.append(title)													# It will be printed
-                    flag = 1														# Deactivate the flag
+    if isinstance(letter, str):
+        if len(letter) == 1:
+            # if the user insert more than one letter,
+            # the script will return an print error
+            for title in list_of_books.keys():
+                if (title[0] == letter or title[0] == letter.upper()):
+                    cbit_list.append(title)
+                    flag = 1
             if flag == 0:
-                print("no books were found starting with the letter \"{}\"".format(first_letter))
+                x = letter
+                print(f"no books were found starting with the letter {x}")
                 return []
             else:
                 print(*cbit_list, sep='\n')
@@ -156,12 +162,12 @@ def books_by_author(author_name):
     with open('lib_package/books_new.csv') as csv_file:   # Opening file
         flag = 0
         csv_reader = csv.reader(csv_file, delimiter=',')  # Reading file
-        header = next(csv_reader)         # reading the header
         if len(author_name) > 0:
             print(f"{author_name.capitalize()} has written:")
-            for row in csv_reader:                # Iteration for all lines
-                if re.search(f"\W*({author_name.capitalize()})\W*", row[1]):  # Using Regular expression to find the name in the string
-                    print(f"- {row[0]} in {row[2]}")    # Print
+            for row in csv_reader:
+                # Using Regular expression to find the name in the string
+                if re.search(f"\\W*({author_name.capitalize()})\\W*", row[1]):
+                    print(f"- {row[0]} in {row[2]}")
                     rcp_list.append(row[0])
                     flag = 1
             if flag == 0:
@@ -183,9 +189,9 @@ def csv_to_title_author():
 
     ctta_dict = {}
     with open('lib_package/books_new.csv') as csv_file:   # Opening file
-        csv_reader = csv.reader(csv_file, delimiter=',')  #reading file
-        header = next(csv_reader)         # Reading the header
-        for row in csv_reader:                # Iteration for all lines
-            if row[1] != '':  #There is some books without an author so I removed it
+        csv_reader = csv.reader(csv_file, delimiter=',')  # Reading file
+        for row in csv_reader:
+            # There are some books without an author so I removed it
+            if row[1] != '':
                 ctta_dict[row[0]] = row[1]
     return ctta_dict

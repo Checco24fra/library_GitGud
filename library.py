@@ -1,13 +1,3 @@
-list_of_books = {'Romeo and Juliet': 'William Shakespeare',
-'1984': 'George Orwell',
-'2001: a Space Odissey': 'Arthur C. Clarke',
-'Pride and Prejudice' : 'Jane Austen',
-'The Great Gatsby' : 'F.Scott Fitzgerald',
-'The Lord of the Rings' : 'J. R. R. Tolkien',
-'The Old Man and the Sea' : 'Ernest Hemingway',
-'The Picture of Dorian Gray' : 'Oscar Wilde',
-'A Christmas Carol' : 'Charles Dickens',
-                 }
 import csv
 import re
 
@@ -15,6 +5,7 @@ def check_book(title):
     """
     Print the author of a title
     """
+    list_of_books = csv_to_title_author()
     if isinstance(title, str):
         if title in list_of_books:
             print("The book {} is written by {}".format(title, list_of_books[title]))
@@ -30,8 +21,8 @@ def check_author(author_name):
     """
     Print all the titles written by an author
     """
-
-    if isinstance(title, str):
+    list_of_books = csv_to_title_author()
+    if isinstance(author_name, str):
         found = False
         for title, author in list_of_books.items():
             if author == author_name:
@@ -54,7 +45,7 @@ def check_by_initial_author(first_letter):
     cbia_list= []
     flag = 0 # a flag used to verify if there is no author with that letter
     list_of_books = csv_to_title_author()
-    if isinstance(title, str):
+    if isinstance(first_letter, str):
         if len(first_letter) == 1:# if the user insert more than one letter, the script will return an print error
             for name in list_of_books.values():
                 if name[0] == first_letter or name[0] == first_letter.upper():# if a author start with the letter given in input
@@ -81,7 +72,7 @@ def check_by_initial_title(first_letter):
     flag = 0 							# a flag used to verify if there is no books with that letter
     list_of_books = csv_to_title_author()
 
-    if isinstance(title, str):
+    if isinstance(first_letter, str):
         if len(first_letter) == 1: 			# if the user insert more than one letter, the script will return an print error
             for title in list_of_books.keys(): # iterator
                 if title[0] == first_letter or title[0] == first_letter.upper(): 	# if a book start with the letter given in input
@@ -100,7 +91,7 @@ def check_by_initial_title(first_letter):
         print("Invalid type, the input should be a character")
         return None
 
-def read_csv_pages(author_name):
+def books_by_author(author_name):
     """
     Function that receive in input a surname and return
     all the books that was written by that author
@@ -110,19 +101,27 @@ def read_csv_pages(author_name):
         flag = 0
         csv_reader = csv.reader(csv_file, delimiter=',') #reading file
         header = next(csv_reader)         # reading the header
-
-        print(f"{author_name.capitalize()} has written:")
-        for row in csv_reader:                # Iteration for all lines
-            if re.search(f"\W*({author_name.capitalize()})\W*", row[1]):  # Using Regular expression to find the name in the string
-                print(f"- {row[0]} in {row[2]}")    # Print
-                rcp_list.append(row[0])
-                flag = 1
-        if flag == 0:
-            print("nothing found...")
+        if len(author_name)>0:
+            print(f"{author_name.capitalize()} has written:")
+            for row in csv_reader:                # Iteration for all lines
+                if re.search(f"\W*({author_name.capitalize()})\W*", row[1]):  # Using Regular expression to find the name in the string
+                    print(f"- {row[0]} in {row[2]}")    # Print
+                    rcp_list.append(row[0])
+                    flag = 1
+            if flag == 0:
+                print("nothing found...")
+                return False
+            else:
+                return rcp_list
         else:
-            return rcp_list
+            print("The input is empty! Please insert a surname.")
+            return None
 
 def csv_to_title_author():
+    """
+    Function used to convert the .csv file into a dictionary
+    containing the book name as index and the author as values
+    """
     ctta_dict ={}
     with open('books_new.csv') as csv_file:   # Opening file
         csv_reader = csv.reader(csv_file, delimiter=',') #reading file

@@ -1,10 +1,48 @@
 import csv
 import re
+list_of_books = {'Romeo and Juliet': 'William Shakespeare',
+                 '1984': 'George Orwell',
+                 '2001: a Space Odissey': 'Arthur C. Clarke',
+                 'Pride and Prejudice' : 'Jane Austen',
+                 'The Great Gatsby' : 'F.Scott Fitzgerald',
+                 'The Lord of the Rings' : 'J. R. R. Tolkien',
+                 'The Old Man and the Sea' : 'Ernest Hemingway',
+                 'The Picture of Dorian Gray' : 'Oscar Wilde',
+                 'A Christmas Carol' : 'Charles Dickens'}
+
+
+def check_book_for_argp(title):
+
+    '''
+    Function to find the author from title for argparse
+    '''
+
+    if title in list_of_books:
+        return True, list_of_books[title]
+    else:
+        return False, 'This book is not in the library'
+
+def check_author_for_argp(author_name):
+
+    '''
+    Function to find the title from author for argparse
+    '''
+
+    found = False
+    for title, author in list_of_books.items():
+        if author == author_name:
+            print("{} wrote {}".format(author_name, title))
+            found = True
+
+    if not found:
+        print("Sorry, {} is not present.".format(author_name))
 
 def check_book(title):
+
     """
     Print the author of a title
     """
+
     list_of_books = csv_to_title_author()
     if isinstance(title, str):
         if title in list_of_books:
@@ -18,9 +56,11 @@ def check_book(title):
         return None
 
 def check_author(author_name):
+
     """
     Print all the titles written by an author
     """
+
     list_of_books = csv_to_title_author()
     if isinstance(author_name, str):
         found = False
@@ -39,9 +79,11 @@ def check_author(author_name):
 
 
 def check_by_initial_author(first_letter):
+
     """
     check_by_initial_author() returns all authors that starting with the letter given in input
     """
+
     cbia_list= []
     flag = 0 # a flag used to verify if there is no author with that letter
     list_of_books = csv_to_title_author()
@@ -65,9 +107,11 @@ def check_by_initial_author(first_letter):
         return None
 
 def check_by_initial_title(first_letter):
+
     """
     check_by_initial_title() returns all books that starting with the letter given in input
     """
+
     cbit_list= []
     flag = 0 							# a flag used to verify if there is no books with that letter
     list_of_books = csv_to_title_author()
@@ -92,10 +136,12 @@ def check_by_initial_title(first_letter):
         return None
 
 def books_by_author(author_name):
+
     """
     Function that receive in input a surname and return
     all the books that was written by that author
     """
+
     rcp_list= []
     with open('books_new.csv') as csv_file:   # Opening file
         flag = 0
@@ -118,10 +164,12 @@ def books_by_author(author_name):
             return None
 
 def csv_to_title_author():
+
     """
     Function used to convert the .csv file into a dictionary
     containing the book name as index and the author as values
     """
+
     ctta_dict ={}
     with open('books_new.csv') as csv_file:   # Opening file
         csv_reader = csv.reader(csv_file, delimiter=',') #reading file

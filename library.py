@@ -162,6 +162,7 @@ def books_by_author(author_name):
     with open('lib_package/books_new.csv') as csv_file:   # Opening file
         flag = 0
         csv_reader = csv.reader(csv_file, delimiter=',')  # Reading file
+        next(csv_reader)
         if len(author_name) > 0:
             print(f"{author_name.capitalize()} has written:")
             for row in csv_reader:
@@ -190,6 +191,7 @@ def csv_to_title_author():
     ctta_dict = {}
     with open('lib_package/books_new.csv') as csv_file:   # Opening file
         csv_reader = csv.reader(csv_file, delimiter=',')  # Reading file
+        next(csv_reader)    # Skipping first line
         for row in csv_reader:
             # There are some books without an author so I removed it
             if row[1] != '':

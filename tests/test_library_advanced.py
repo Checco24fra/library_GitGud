@@ -9,12 +9,12 @@ class TestStringInput(unittest.TestCase):
     def test_correct_values_initial_author(self):
         """testing correct values for the function check_by_initial_author()"""
         self.assertEqual(library.check_by_initial_author("A"), [
-            'Ackroyd, Peter', 'Aczel, Amir',
-            'Archer, Jeffery', 'Archer, Jeffery'
+            'Archer, Jeffery', 'Archer, Jeffery',
+            'Aczel, Amir', 'Ackroyd, Peter'
             ])
         self.assertEqual(library.check_by_initial_author("a"), [
-            'Ackroyd, Peter', 'Aczel, Amir',
-            'Archer, Jeffery', 'Archer, Jeffery'
+            'Archer, Jeffery', 'Archer, Jeffery',
+            'Aczel, Amir', 'Ackroyd, Peter'
             ])
         self.assertEqual(library.check_by_initial_author("J"), [
             'Janert, Phillip'
@@ -33,7 +33,7 @@ class TestStringInput(unittest.TestCase):
     # corner case: symbol instead of character
     def test_corner_values_initial_author(self):
         """testing corner values for the function check_by_initial_author()"""
-        self.assertEqual(library.check_by_initial_author("@"), [''])
+        self.assertEqual(library.check_by_initial_author("@"), [])
 
     # smoke test: valid inputs
     def test_correct_values_initial_title(self):
@@ -41,14 +41,14 @@ class TestStringInput(unittest.TestCase):
         self.assertEqual(library.check_by_initial_title("z"), [
             'Zen & The Art of Motorcycle Maintenance'
             ])
-        self.assertEqual(library.check_by_initial_title("T"), [
-            'Half A Life',
-            'Hidden Connections, The',
-            'History of England, Foundation',
-            'History of the DC Universe',
-            'History of Western Philosophy',
+        self.assertEqual(library.check_by_initial_title("H"), [
             'How to Think Like Sherlock Holmes',
-            'Hunchback of Notre Dame, The'
+            'Hidden Connections, The',
+            'Hunchback of Notre Dame, The',
+            'History of Western Philosophy',
+            'Half A Life',
+            'Hafasavnuk',
+            'History of England, Foundation',
             ])
         self.assertEqual(library.check_by_initial_title("y"), [])
         self.assertFalse(library.check_by_initial_title("kek"))
@@ -56,14 +56,14 @@ class TestStringInput(unittest.TestCase):
     # invalid inputs
     def test_wrong_values_initial_title(self):
         """testing wrong values for the function check_by_initial_title()"""
-        self.assertEqual(library.check_by_initial_title(""), None)
+        self.assertEqual(library.check_by_initial_title(""), False)
         self.assertEqual(library.check_by_initial_title(["b"]), None)
         self.assertEqual(library.check_by_initial_title(True), None)
 
     # corner case: symbol instead of character
     def test_corner_values_initial_title(self):
         """testing corner values for the function check_by_initial_title()"""
-        self.assertEqual(library.check_by_initial_author("@"), [''])
+        self.assertEqual(library.check_by_initial_author("@"), [])
 
 
 if __name__ == '__main__':

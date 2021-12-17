@@ -34,11 +34,11 @@ def check_author_for_argp(author_name):
     found = False
     for title, author in list_of_books.items():
         if author == author_name:
-            print("{} wrote {}".format(author_name, title))
+            return True, list_of_book[author_name]
             found = True
 
     if not found:
-        print("Sorry, {} is not present.".format(author_name))
+        return False, 'This author is not in the library'
 
 
 def check_book(title):
@@ -102,7 +102,7 @@ def check_by_initial_author(first_letter):
                     flag = 1.  # Deactivate the flag
             if flag == 0:
                 value = first_letter
-                print(f"no authors were found starting with the letter {value}"")
+                print(f"no authors were found starting with the letter {value}")
                 return []
             else:
                 print(*cbia_list, sep ='\n')

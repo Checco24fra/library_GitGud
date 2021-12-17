@@ -3,14 +3,22 @@ import sys
 import os
 import library
 
-class TestStringInput(unittest.TestCase):
 
+class TestStringInput(unittest.TestCase):
     # smoke test: valid inputs
     def test_correct_values_initial_author(self):
         """testing correct values for the function check_by_initial_author()"""
-        self.assertEqual(library.check_by_initial_author("A"), ['Ackroyd, Peter', 'Aczel, Amir', 'Archer, Jeffery', 'Archer, Jeffery'])
-        self.assertEqual(library.check_by_initial_author("a"), ['Ackroyd, Peter', 'Aczel, Amir', 'Archer, Jeffery', 'Archer, Jeffery'])
-        self.assertEqual(library.check_by_initial_author("J"), ['Janert, Phillip'])
+        self.assertEqual(library.check_by_initial_author("A"), [
+            'Ackroyd, Peter', 'Aczel, Amir',
+            'Archer, Jeffery', 'Archer, Jeffery'
+            ])
+        self.assertEqual(library.check_by_initial_author("a"), [
+            'Ackroyd, Peter', 'Aczel, Amir',
+            'Archer, Jeffery', 'Archer, Jeffery'
+            ])
+        self.assertEqual(library.check_by_initial_author("J"), [
+            'Janert, Phillip'
+            ])
         self.assertEqual(library.check_by_initial_author("u"), [])
         self.assertFalse(library.check_by_initial_author("Ba"))
         self.assertFalse(library.check_by_initial_author(""))
@@ -30,16 +38,18 @@ class TestStringInput(unittest.TestCase):
     # smoke test: valid inputs
     def test_correct_values_initial_title(self):
         """testing correct values for the function check_by_initial_title()"""
-        self.assertEqual(library.check_by_initial_title("z"), ['Zen & The Art of Motorcycle Maintenance'])
+        self.assertEqual(library.check_by_initial_title("z"), [
+            'Zen & The Art of Motorcycle Maintenance'
+            ])
         self.assertEqual(library.check_by_initial_title("T"), [
-                                                               'Half A Life',
-                                                               'Hidden Connections, The',
-                                                               'History of England, Foundation',
-                                                               'History of the DC Universe',
-                                                               'History of Western Philosophy',
-                                                               'How to Think Like Sherlock Holmes',
-                                                               'Hunchback of Notre Dame, The'
-                                                               ])
+            'Half A Life',
+            'Hidden Connections, The',
+            'History of England, Foundation',
+            'History of the DC Universe',
+            'History of Western Philosophy',
+            'How to Think Like Sherlock Holmes',
+            'Hunchback of Notre Dame, The'
+            ])
         self.assertEqual(library.check_by_initial_title("y"), [])
         self.assertFalse(library.check_by_initial_title("kek"))
 
@@ -54,6 +64,7 @@ class TestStringInput(unittest.TestCase):
     def test_corner_values_initial_title(self):
         """testing corner values for the function check_by_initial_title()"""
         self.assertEqual(library.check_by_initial_author("@"), [''])
+
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)

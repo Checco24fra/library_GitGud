@@ -6,7 +6,6 @@ import library
 
 class TestStringInput(unittest.TestCase):
 
-
     # smoke test: valid inputs
     def test_correct_values_book(self):
         """testing correct values for check_book()"""
@@ -33,6 +32,7 @@ class TestStringInput(unittest.TestCase):
         self.assertTrue(library.check_author("Jane Austen"))
         self.assertTrue(library.check_author("Ernest Hemingway"))
         self.assertFalse(library.check_author("Santa Claus"))
+
     # invalid inputs
     def test_wrong_values_author(self):
         """testing wrong values for check_author()"""
@@ -45,7 +45,6 @@ class TestStringInput(unittest.TestCase):
     def test_empty_string_author(self):
         """testing corner values for check_author()"""
         self.assertFalse(library.check_author(""))
-
 
 
 if __name__ == '__main__':

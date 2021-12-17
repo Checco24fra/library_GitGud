@@ -153,7 +153,7 @@ def books_by_author(author_name):
     """
 
     rcp_list = []
-    with open('books_new.csv') as csv_file:   # Opening file
+    with open('lib_package/books_new.csv') as csv_file:   # Opening file
         flag = 0
         csv_reader = csv.reader(csv_file, delimiter=',')  # Reading file
         header = next(csv_reader)         # reading the header
@@ -182,7 +182,7 @@ def csv_to_title_author():
     """
 
     ctta_dict = {}
-    with open('books_new.csv') as csv_file:   # Opening file
+    with open('lib_package/books_new.csv') as csv_file:   # Opening file
         csv_reader = csv.reader(csv_file, delimiter=',')  #reading file
         header = next(csv_reader)         # Reading the header
         for row in csv_reader:                # Iteration for all lines

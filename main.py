@@ -1,6 +1,7 @@
 from library import check_book_for_argp, check_author_for_argp
 from library import check_book, check_author
 from library import check_by_initial_author, check_by_initial_title
+from library import books_by_author
 from lib_package import csvmodule
 
 
@@ -62,4 +63,5 @@ if __name__ == '__main__':
     check_author(args.author)
     check_by_initial_author("j")
     check_by_initial_title("c")
+    books_by_author('John')
     csvmodule.read_csv_pages(200)

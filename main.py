@@ -2,7 +2,6 @@ from library import check_book_for_argp, check_author_for_argp
 from library import check_book, check_author
 from library import check_by_initial_author, check_by_initial_title
 from lib_package import csvmodule
-from lib_package import books_new.csv
 
 import argparse
 

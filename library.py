@@ -34,7 +34,7 @@ def check_author_for_argp(author_name):
     found = False
     for title, author in list_of_books.items():
         if author == author_name:
-            return True, list_of_book[author_name]
+            return True, title
             found = True
 
     if not found:
@@ -50,10 +50,10 @@ def check_book(title):
     list_of_books = csv_to_title_author()
     if isinstance(title, str):
         if title in list_of_books:
-            print(f"The book {title} is written by {list_of_books[title]}")
+            print(f"The book {title} is written by {list_of_books[title]} in the csv lib")
             return True
         else:
-            print("Sorry, we do not have {}".format(title))
+            print("Sorry, we do not have {} in the csv lib".format(title))
             return False
     else:
         print("Invalid type, the title should be a string")
@@ -71,12 +71,12 @@ def check_author(author_name):
         found = False
         for title, author in list_of_books.items():
             if author == author_name:
-                print("{} wrote {}".format(author_name, title))
+                print("{} wrote {} in the csv lib".format(author_name, title))
                 found = True
                 return True
 
         if not found:
-            print("Sorry, {} is not present.".format(author_name))
+            print("Sorry, {} is not present in the csv lib.".format(author_name))
             return False
     else:
         print("Invalid type, the author's name should be a string")

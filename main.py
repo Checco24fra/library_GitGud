@@ -39,7 +39,7 @@ if __name__ == '__main__':
         else:
             print(f'{author} wrote {args.book}')
     else:
-        print(f'The book {args.book} is not in the library')
+        print(f'The book {args.book} is not in the original library')
 
     '''
     Second conditional for the second pos. argument
@@ -48,20 +48,24 @@ if __name__ == '__main__':
     author_exits, title = check_author_for_argp(args.author)  # New outputs of fun
     if author_exits:
         if args.quiet:
-            print(f'{author_exits} has written {title}')
+            print(f'{args.author} has written {title}')
         else:
-            print(f'{title} is written by {author_exits}')
+            print(f'{title} is written by {args.author}')
     else:
-        print(f'The {args.author} is not in the library')
+        print(f'The author {args.author} is not in the original library')
 
 
     '''
     Other functions
     '''
-
+    print('<|Check book and author in the csv file:')
     check_book(args.book)
     check_author(args.author)
+    print('<|Check an initial letter and find author with the last name starting with that letter:')
     check_by_initial_author("j")
-    check_by_initial_title("c")
-    books_by_author('John')
+    print('<|Check initial letter of the title of a book:')
+    check_by_initial_title("m")
+    print('<|Check the last name of an author and see the book he wrote:')
+    books_by_author('Vonnegut')
+    print('<|Check book with n number of pages:')
     csvmodule.read_csv_pages(200)
